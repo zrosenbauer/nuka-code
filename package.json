@@ -1,6 +1,6 @@
 {
 	"name": "nuka-code",
-	"version": "0.1.10",
+	"version": "0.1.11",
 	"description": "A package brought to you by the Nuka-Cola Corporation to zap away those pesky `cache`, `node_modules`, and other related files & directories.",
 	"type": "module",
 	"main": "dist/index.js",
