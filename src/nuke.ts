@@ -1,12 +1,7 @@
 import path from "node:path";
-// import consola from "consola";
-// import { glob } from "glob";
 import ignore from "ignore";
 import { rimraf } from "rimraf";
-import {
-	// backup,
-	readIgnoreFile,
-} from "#/lib/project";
+import { readIgnoreFile } from "#/lib/project";
 import { toDeepGlob, unique } from "#/lib/utils";
 
 /**
@@ -18,7 +13,6 @@ export async function nukeEverything(rootDir = process.cwd()) {
 	const runId = Date.now();
 	const cache = await nukeCache(rootDir, runId);
 	const builds = await nukeBuilds(rootDir, runId);
-	// MUST BE LAST or this breaks it cause we are NUKING node_modules
 	const nodeModules = await nukeNodeModules(rootDir, runId);
 	return {
 		cache,
@@ -37,12 +31,6 @@ export async function nukeNodeModules(
 	runId = Date.now(),
 ) {
 	const ignoreHelper = await createIgnoreFileHelper(rootDir);
-	// const found = unique(
-	// 	await glob(getNukeNodeModulesGlob(), {
-	// 		root: rootDir,
-	// 	}),
-	// );
-	// await backup(found, runId, rootDir);
 	return await rimraf(getNukeNodeModulesGlob(), {
 		glob: true,
 		filter: async (filePath) => {
@@ -58,12 +46,6 @@ export async function nukeNodeModules(
  */
 export async function nukeCache(rootDir = process.cwd(), runId = Date.now()) {
 	const ignoreHelper = await createIgnoreFileHelper(rootDir);
-	// const found = unique(
-	// 	await glob(getNukeCacheGlob(), {
-	// 		root: rootDir,
-	// 	}),
-	// );
-	// await backup(found, runId, rootDir);
 	return await rimraf(getNukeCacheGlob(), {
 		glob: true,
 		filter: async (filePath) => {
@@ -79,12 +61,6 @@ export async function nukeCache(rootDir = process.cwd(), runId = Date.now()) {
  */
 export async function nukeBuilds(rootDir = process.cwd(), runId = Date.now()) {
 	const ignoreHelper = await createIgnoreFileHelper(rootDir);
-	// const found = unique(
-	// 	await glob(getNukeCacheGlob(), {
-	// 		root: rootDir,
-	// 	}),
-	// );
-	// await backup(found, runId, rootDir);
 	return await rimraf(getNukeBuildsGlob(), {
 		glob: true,
 		filter: async (filePath) => {
@@ -135,11 +111,15 @@ export function getNukeCacheGlob() {
  */
 export function getNukeBuildsGlob() {
 	return toDeepGlob([
+		// Build artifacts
 		"dist",
 		"out",
 		"output",
 		"outputs",
 		"bundle",
+		".output",
+		".outputs",
+		".build",
 
 		// Frameworks
 		".vercel",
