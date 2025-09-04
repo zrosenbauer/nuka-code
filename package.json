@@ -34,6 +34,8 @@
 		"gen:docs": "tsx scripts/generate-docs.ts",
 		"check": "biome check",
 		"check:ci": "biome check --ci",
+		"publish": "pnpm run build && pnpm changeset publish",
+		"version": "pnpm changeset version && pnpm install --no-frozen-lockfile",
 		"cli": "(pnpm build  > /dev/null 2>&1) && pnpm nuke",
 		"prepare": "husky"
 	},
