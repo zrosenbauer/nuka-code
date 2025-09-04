@@ -28,6 +28,12 @@ The directory(s) where your project's build artifacts are stored, such as `dist`
 - `**/[!node_modules]**/outputs`
 - `bundle`
 - `**/[!node_modules]**/bundle`
+- `.output`
+- `**/[!node_modules]**/.output`
+- `.outputs`
+- `**/[!node_modules]**/.outputs`
+- `.build`
+- `**/[!node_modules]**/.build`
 - `.vercel`
 - `**/[!node_modules]**/.vercel`
 - `.next`
