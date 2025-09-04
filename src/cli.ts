@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import chalk from "chalk";
 import consola from "consola";
 import { glob } from "glob";
@@ -8,12 +9,7 @@ import { hideBin } from "yargs/helpers";
 import yoctoSpinner from "yocto-spinner";
 import ascii from "#/lib/ascii";
 import { isGitDirty } from "#/lib/git";
-import {
-	// cleanBackup,
-	// hasExistingBackups,
-	initialize,
-	isInitialized,
-} from "#/lib/project";
+import { initialize, isInitialized } from "#/lib/project";
 import { printTree } from "#/lib/tree";
 import {
 	createIgnoreFileHelper,
@@ -89,7 +85,14 @@ cli
 				});
 		},
 		async (argv) => {
-			consola.start("Nuking your project...");
+			consola.start("Pushing the button...");
+			consola.info("You have 5 seconds to reconsider...");
+			let i = 0;
+			while (i < 5) {
+				consola.info(`${5 - i} seconds remaining...`);
+				await new Promise((resolve) => setTimeout(resolve, 1000));
+				i++;
+			}
 
 			if (await isGitDirty()) {
 				if (argv.force === true) {
@@ -103,21 +106,6 @@ cli
 
 			// MUST be after dirty check cause we add files...
 			await initialize();
-
-			// if (!(await hasExistingBackups())) {
-			// 	if (
-			// 		!(await consola.prompt(
-			// 			"This seems to be the first nuke you've dropped...make sure you know what you're doing! Do you want to continue?",
-			// 			{
-			// 				type: "confirm",
-			// 				default: false,
-			// 			},
-			// 		))
-			// 	) {
-			// 		consola.info("Aborting...");
-			// 		return;
-			// 	}
-			// i}
 
 			const spinner = yoctoSpinner({
 				text: "Nuking your project... brace for impact!",
@@ -143,29 +131,6 @@ cli
 			}
 		},
 	)
-	// .command(
-	// 	"clean",
-	// 	"Clean out the backups in the .nuke directory",
-	// 	async (argv) => {
-	// 		consola.start("Cleaning up backups");
-
-	// 		if (
-	// 			!(await consola.prompt(
-	// 				"Are you sure you want to clean out the backups?",
-	// 				{
-	// 					type: "confirm",
-	// 					default: false,
-	// 				},
-	// 			))
-	// 		) {
-	// 			consola.info("Aborting...");
-	// 			return;
-	// 		}
-
-	// 		await cleanBackup(process.cwd());
-	// 		consola.success("Backups cleaned");
-	// 	},
-	// )
 	.command(
 		"list",
 		"List all the files that would be nuked",
