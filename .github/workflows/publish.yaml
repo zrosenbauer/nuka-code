@@ -8,7 +8,6 @@ on:
 
 env:
   NODE_VERSION: 24
-  PNPM_VERSION: 10.14.0
 
 concurrency:
   group: publish-${{ github.ref }}
@@ -29,8 +28,6 @@ jobs:
 
       - name: '🟨 Install pnpm' 
         uses: pnpm/action-setup@v4
-        with:
-          version: ${{ env.PNPM_VERSION }}
 
       - name: '💚 Setup Node'
         uses: actions/setup-node@v4
