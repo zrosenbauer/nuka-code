@@ -84,7 +84,7 @@ if (import.meta.vitest) {
 	describe("toDeepGlob", () => {
 		test("toDeepGlob returns the correct glob patterns", () => {
 			const result = toDeepGlob(["test/project/package.json"]);
-			expect(result).toBe([
+			expect(result).toStrictEqual([
 				"test/project/package.json",
 				"**/[!node_modules]**/test/project/package.json",
 			]);
