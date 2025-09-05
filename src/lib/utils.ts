@@ -77,3 +77,17 @@ export function toDeepGlob(filePaths: string[]) {
 		}),
 	);
 }
+
+if (import.meta.vitest) {
+	const { test, expect, describe } = import.meta.vitest;
+
+	describe("toDeepGlob", () => {
+		test("toDeepGlob returns the correct glob patterns", () => {
+			const result = toDeepGlob(["test/project/package.json"]);
+			expect(result).toStrictEqual([
+				"test/project/package.json",
+				"**/[!node_modules]**/test/project/package.json",
+			]);
+		});
+	});
+}
