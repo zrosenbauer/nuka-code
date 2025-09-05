@@ -1,0 +1,18 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "vitest: run",
+			"type": "node",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"runtimeExecutable": "pnpm",
+			"runtimeArgs": ["test", "run"],
+			"console": "integratedTerminal",
+			"skipFiles": ["<node_internals>/**"],
+			"env": {
+				"NODE_ENV": "test"
+			}
+		}
+	]
+}
