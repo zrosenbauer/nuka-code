@@ -33,12 +33,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. All user messages use consistent clack styling (intro, outro, log, error)
   3. chalk, consola, and yocto-spinner are removed from package.json dependencies
   4. Spinner states correctly reflect operation progress (start, stop, success, error)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
-- [ ] 01-03: TBD
+- [ ] 01-01-PLAN.md - Install @clack/prompts and picocolors, remove chalk/consola/yocto-spinner
+- [ ] 01-02-PLAN.md - Migrate cli.ts to use clack and picocolors
+- [ ] 01-03-PLAN.md - Migrate tree.ts and project.ts, verify full build
 
 ### Phase 2: Detection
 **Goal**: nuka-code correctly identifies the package manager and its specific version/format
@@ -169,7 +169,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. CLI Foundation | 0/TBD | Not started | - |
+| 1. CLI Foundation | 0/3 | Planned | - |
 | 2. Detection | 0/TBD | Not started | - |
 | 3. Execution Infrastructure | 0/TBD | Not started | - |
 | 4. npm/yarn Cache Cleanup | 0/TBD | Not started | - |
