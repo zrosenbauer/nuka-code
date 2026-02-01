@@ -38,7 +38,7 @@ cli
 					(s) => s >= 80,
 					() => ascii.logoSmall,
 				)
-				.otherwise(() => `☢️ ${chalk.bold.green("Nuka-Code")}`),
+				.otherwise(() => `☢️ ${pc.bold(pc.green("Nuka-Code"))}`),
 			match(cli.terminalWidth())
 				.with(
 					P.number,
@@ -47,7 +47,7 @@ cli
 						"\n--------------------------------------------------------------------------\n",
 				)
 				.otherwise(() => "---------------------------------------------\n"),
-			`${chalk.bold.green("nuke")} - A CLI tool for ${chalk.italic("nuking")} your non-essentials aka your node_modules, cache, and build directories.`,
+			`${pc.bold(pc.green("nuke"))} - A CLI tool for ${pc.italic("nuking")} your non-essentials aka your node_modules, cache, and build directories.`,
 		].join("\n"),
 	)
 	.option("no-fun", {
@@ -68,7 +68,7 @@ cli
 	})
 	.command(
 		["*", "it"],
-		`Time to ${chalk.bold("NUKE IT")}! Drop the nuke on your project`,
+		`Time to ${pc.bold("NUKE IT")}! Drop the nuke on your project`,
 		(yargs) => {
 			return yargs
 				.positional("type", {
@@ -150,7 +150,7 @@ cli
 			const globbed = getNukeEverythingGlob();
 			if (argv.glob) {
 				consola.info("The following globs will be nuked:\n");
-				printList(globbed, (g) => chalk.cyan(g));
+				printList(globbed, (g) => pc.cyan(g));
 				console.log(
 					"\n  (this does not include what is ignored in your .nukeignore file)",
 				);
@@ -184,5 +184,5 @@ cli
 	.parse();
 
 function printList(items: string[], transform = (i: string) => i) {
-	console.log(items.map((i) => `  • ${chalk.red(transform(i))}`).join("\n"));
+	console.log(items.map((i) => `  • ${pc.red(transform(i))}`).join("\n"));
 }
