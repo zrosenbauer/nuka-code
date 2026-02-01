@@ -118,9 +118,7 @@ function printNode(
 		line.push(isLast ? SYMBOLS.LAST_BRANCH : SYMBOLS.BRANCH);
 	}
 	line.push(
-		node.name === "<root>"
-			? `${pc.cyan("<root>")}`
-			: `${pc.red(node.name)}`,
+		node.name === "<root>" ? `${pc.cyan("<root>")}` : `${pc.red(node.name)}`,
 	);
 	if (node.isDirectory && options.trailingSlash) {
 		line.push("/");
