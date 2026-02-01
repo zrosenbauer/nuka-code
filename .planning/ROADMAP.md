@@ -12,7 +12,7 @@ This roadmap transforms nuka-code from a pnpm-focused tool into a universal cach
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: CLI Foundation** - Migrate to @clack/prompts and remove legacy dependencies
+- [x] **Phase 1: CLI Foundation** - Migrate to @clack/prompts and remove legacy dependencies
 - [ ] **Phase 2: Detection** - Implement package-manager-detector with version/format handling
 - [ ] **Phase 3: Execution Infrastructure** - Build parallel/sequential task execution framework
 - [ ] **Phase 4: npm/yarn Cache Cleanup** - Implement npm and yarn (Classic + Berry) cache cleanup
@@ -36,9 +36,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md - Install @clack/prompts and picocolors, remove chalk/consola/yocto-spinner
-- [ ] 01-02-PLAN.md - Migrate cli.ts to use clack and picocolors
-- [ ] 01-03-PLAN.md - Migrate tree.ts and project.ts, verify full build
+- [x] 01-01-PLAN.md - Install @clack/prompts and picocolors, remove chalk/consola/yocto-spinner
+- [x] 01-02-PLAN.md - Migrate cli.ts to use clack and picocolors
+- [x] 01-03-PLAN.md - Migrate tree.ts and project.ts, verify full build
 
 ### Phase 2: Detection
 **Goal**: nuka-code correctly identifies the package manager and its specific version/format
@@ -169,7 +169,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. CLI Foundation | 0/3 | Planned | - |
+| 1. CLI Foundation | 3/3 | Complete | 2026-02-01 |
 | 2. Detection | 0/TBD | Not started | - |
 | 3. Execution Infrastructure | 0/TBD | Not started | - |
 | 4. npm/yarn Cache Cleanup | 0/TBD | Not started | - |
