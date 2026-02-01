@@ -5,33 +5,33 @@
 See: .planning/PROJECT.md (updated 2026-01-31)
 
 **Core value:** Run `nuke` in any JS/TS project and it correctly detects and cleans everything, regardless of package manager or monorepo tool.
-**Current focus:** Phase 2 - Detection
+**Current focus:** Phase 2 - Detection (Complete)
 
 ## Current Position
 
-Phase: 2 of 9 (Detection)
-Plan: 1 of TBD in current phase
-Status: In progress
-Last activity: 2026-02-01 - Completed 02-01-PLAN.md
+Phase: 2 of 9 (Detection) - Complete
+Plan: 2 of 2 in current phase
+Status: Phase complete
+Last activity: 2026-02-01 - Completed 02-02-PLAN.md
 
-Progress: [##--------] ~15%
+Progress: [##--------] ~20%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 3.0 min
-- Total execution time: 12 min
+- Total plans completed: 5
+- Average duration: 2.8 min
+- Total execution time: 14 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-cli-foundation | 3/3 | 10 min | 3.3 min |
-| 02-detection | 1/TBD | 2 min | 2.0 min |
+| 02-detection | 2/2 | 4 min | 2.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (5 min), 01-02 (2 min), 01-03 (3 min), 02-01 (2 min)
+- Last 5 plans: 01-02 (2 min), 01-03 (3 min), 02-01 (2 min), 02-02 (2 min)
 - Trend: Stable, improving
 
 *Updated after each plan completion*
@@ -50,6 +50,7 @@ Recent decisions affecting current work:
 - Use package-manager-detector library for robust PM detection (de facto standard)
 - Use `agent` field (not `name`) for cache command decisions (distinguishes yarn/yarn@berry)
 - bun.lock (text) takes precedence over bun.lockb (binary) per Bun 1.2+
+- Use LOCKS constant from package-manager-detector for lockfile detection (includes pnpm-workspace.yaml)
 
 ### Pending Todos
 
@@ -57,10 +58,10 @@ None yet.
 
 ### Blockers/Concerns
 
-None currently. Detection module created, ready for tests (02-02).
+None currently. Phase 2 Detection complete. Ready for Phase 3: Cleanup Commands.
 
 ## Session Continuity
 
-Last session: 2026-02-01T05:23:01Z
-Stopped at: Completed 02-01-PLAN.md - Detection module created
+Last session: 2026-02-01T05:26:58Z
+Stopped at: Completed 02-02-PLAN.md - Phase 2 Detection complete
 Resume file: None
