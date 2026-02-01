@@ -63,7 +63,7 @@ cli
 	})
 	.showHelpOnFail(false)
 	.fail((msg, err, yargs) => {
-		consola.error(err.message);
+		clack.log.error(err.message);
 		process.exit(1);
 	})
 	.command(
@@ -84,18 +84,18 @@ cli
 				});
 		},
 		async (argv) => {
-			consola.start("Pushing the button...");
-			consola.info("You have 5 seconds to reconsider...");
+			clack.log.step("Pushing the button...");
+			clack.log.info("You have 5 seconds to reconsider...");
 			let i = 0;
 			while (i < 5) {
-				consola.info(`${5 - i} seconds remaining...`);
+				clack.log.info(`${5 - i} seconds remaining...`);
 				await new Promise((resolve) => setTimeout(resolve, 1000));
 				i++;
 			}
 
 			if (await isGitDirty()) {
 				if (argv.force === true) {
-					consola.warn(
+					clack.log.warn(
 						"You have unsaved changes, but you are forcing the nuke... good luck!",
 					);
 				} else {
@@ -122,9 +122,9 @@ cli
 				if (argv.noFun !== true) {
 					console.log(ascii.vaultBoy2);
 				}
-				consola.success("You successfully nuked your project, good job!");
+				clack.log.success("You successfully nuked your project, good job!");
 			} else {
-				consola.info(
+				clack.log.info(
 					"Well this is awkward... nothing was nuked. Maybe you should try again?",
 				);
 			}
@@ -149,13 +149,13 @@ cli
 		async (argv) => {
 			const globbed = getNukeEverythingGlob();
 			if (argv.glob) {
-				consola.info("The following globs will be nuked:\n");
+				clack.log.info("The following globs will be nuked:\n");
 				printList(globbed, (g) => pc.cyan(g));
 				console.log(
 					"\n  (this does not include what is ignored in your .nukeignore file)",
 				);
 			} else {
-				consola.info("The following files & directories will be nuked:\n");
+				clack.log.info("The following files & directories will be nuked:\n");
 				const finalGlobbed = globbed.map((g) => {
 					if (argv.verbose) {
 						return `${g}/**/*`;
@@ -174,12 +174,12 @@ cli
 	)
 	.command("init", "Initialize the project", async (argv) => {
 		if (await isInitialized(process.cwd())) {
-			consola.success("Project already initialized");
+			clack.log.success("Project already initialized");
 			return;
 		}
 
 		await initialize(process.cwd(), true);
-		consola.success("Project initialized");
+		clack.log.success("Project initialized");
 	})
 	.parse();
 
