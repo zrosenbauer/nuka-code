@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
-import chalk from "chalk";
-import consola from "consola";
+import * as clack from "@clack/prompts";
 import { glob } from "glob";
+import pc from "picocolors";
 import { P, match } from "ts-pattern";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import yoctoSpinner from "yocto-spinner";
 import ascii from "#/lib/ascii";
 import { isGitDirty } from "#/lib/git";
 import { initialize, isInitialized } from "#/lib/project";
