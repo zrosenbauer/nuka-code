@@ -49,11 +49,11 @@ Plans:
   2. Running `nuke` in a bun project detects lockfile format (bun.lockb vs bun.lock)
   3. Running `nuke` in a project with multiple lockfiles reports detected managers
   4. Detection uses package-manager-detector library (not custom parsing)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md - Install package-manager-detector and create detection module
+- [ ] 02-02-PLAN.md - Update lockfile.ts and verify detection integration
 
 ### Phase 3: Execution Infrastructure
 **Goal**: Cleanup tasks execute efficiently with configurable parallelism
@@ -170,7 +170,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. CLI Foundation | 3/3 | Complete | 2026-02-01 |
-| 2. Detection | 0/TBD | Not started | - |
+| 2. Detection | 0/2 | Not started | - |
 | 3. Execution Infrastructure | 0/TBD | Not started | - |
 | 4. npm/yarn Cache Cleanup | 0/TBD | Not started | - |
 | 5. pnpm/bun/deno Cache Cleanup | 0/TBD | Not started | - |
