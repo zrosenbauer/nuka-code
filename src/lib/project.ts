@@ -1,7 +1,7 @@
 import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import { cp } from "node:fs/promises";
 import path from "node:path";
-import consola from "consola";
+import * as clack from "@clack/prompts";
 import { exists } from "#/lib/fs";
 import { hasLockfile, readPackageJson } from "#/lib/manifest";
 
@@ -70,21 +70,26 @@ export async function initialize(
 
 			const root = await isRoot();
 			if (!root) {
-				consola.info(
+				clack.log.info(
 					`Uh oh! You don't have a ${DIR_CACHE} directory in your current working directory.`,
 				);
 
-				return await consola.prompt("Are you in the root of your project?", {
-					type: "confirm",
-					default: false,
+				const result = await clack.confirm({
+					message: "Are you in the root of your project?",
+					initialValue: false,
 				});
+				if (clack.isCancel(result)) {
+					clack.cancel("Operation cancelled.");
+					process.exit(0);
+				}
+				return result;
 			}
 
 			return root;
 		})();
 
 		if (root && !(await isInitialized(filePath))) {
-			consola.info("Initializing project...");
+			clack.log.info("Initializing project...");
 
 			if (!(await exists(ignoreFile))) {
 				await writeFile(
@@ -107,7 +112,7 @@ async function appendToGitignore(gitignoreFile: string) {
 `.trim();
 
 	if (!(await exists(gitignoreFile))) {
-		consola.info("No .gitignore file found, creating one...");
+		clack.log.info("No .gitignore file found, creating one...");
 		await writeFile(gitignoreFile, `${nukeIgnoreContents}\n`);
 	}
 
