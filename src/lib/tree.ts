@@ -1,5 +1,5 @@
 import path from "node:path";
-import chalk from "chalk";
+import pc from "picocolors";
 
 interface TreeOptions {
 	trailingSlash: boolean;
@@ -12,19 +12,19 @@ const DEFAULT_OPTIONS: TreeOptions = {
 };
 
 const SYMBOLS_ANSI = {
-	BRANCH: chalk.gray("├── "),
+	BRANCH: pc.gray("├── "),
 	EMPTY: "",
 	INDENT: "    ",
-	LAST_BRANCH: chalk.gray("└── "),
-	VERTICAL: chalk.gray("│   "),
+	LAST_BRANCH: pc.gray("└── "),
+	VERTICAL: pc.gray("│   "),
 };
 
 const SYMBOLS_ASCII = {
-	BRANCH: chalk.gray("|-- "),
+	BRANCH: pc.gray("|-- "),
 	EMPTY: "",
 	INDENT: "    ",
-	LAST_BRANCH: chalk.gray("`-- "),
-	VERTICAL: chalk.gray("|   "),
+	LAST_BRANCH: pc.gray("`-- "),
+	VERTICAL: pc.gray("|   "),
 };
 
 interface TreeNode {
@@ -119,8 +119,8 @@ function printNode(
 	}
 	line.push(
 		node.name === "<root>"
-			? `${chalk.cyan("<root>")}`
-			: `${chalk.red(node.name)}`,
+			? `${pc.cyan("<root>")}`
+			: `${pc.red(node.name)}`,
 	);
 	if (node.isDirectory && options.trailingSlash) {
 		line.push("/");
