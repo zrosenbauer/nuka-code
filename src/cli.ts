@@ -106,27 +106,32 @@ cli
 			// MUST be after dirty check cause we add files...
 			await initialize();
 
-			const spinner = yoctoSpinner({
-				text: "Nuking your project... brace for impact!",
-			}).start();
+			const s = clack.spinner();
+			try {
+				s.start("Nuking your project... brace for impact!");
 
-			const result = await match(argv.type)
-				.with("all", () => nukeEverything(process.cwd()))
-				.with("node_modules", () => nukeNodeModules(process.cwd()))
-				.with("cache", () => nukeCache(process.cwd()))
-				.with("build", () => nukeBuilds(process.cwd()))
-				.otherwise(() => Promise.resolve(false));
+				const result = await match(argv.type)
+					.with("all", () => nukeEverything(process.cwd()))
+					.with("node_modules", () => nukeNodeModules(process.cwd()))
+					.with("cache", () => nukeCache(process.cwd()))
+					.with("build", () => nukeBuilds(process.cwd()))
+					.otherwise(() => Promise.resolve(false));
 
-			spinner.success();
-			if (result) {
-				if (argv.noFun !== true) {
-					console.log(ascii.vaultBoy2);
+				s.stop("Nuke complete!");
+
+				if (result) {
+					if (argv.noFun !== true) {
+						console.log(ascii.vaultBoy2);
+					}
+					clack.log.success("You successfully nuked your project, good job!");
+				} else {
+					clack.log.info(
+						"Well this is awkward... nothing was nuked. Maybe you should try again?",
+					);
 				}
-				clack.log.success("You successfully nuked your project, good job!");
-			} else {
-				clack.log.info(
-					"Well this is awkward... nothing was nuked. Maybe you should try again?",
-				);
+			} catch (error) {
+				s.stop("Nuke failed!");
+				throw error;
 			}
 		},
 	)
