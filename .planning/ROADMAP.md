@@ -13,7 +13,7 @@ This roadmap transforms nuka-code from a pnpm-focused tool into a universal cach
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: CLI Foundation** - Migrate to @clack/prompts and remove legacy dependencies
-- [ ] **Phase 2: Detection** - Implement package-manager-detector with version/format handling
+- [x] **Phase 2: Detection** - Implement package-manager-detector with version/format handling
 - [ ] **Phase 3: Execution Infrastructure** - Build parallel/sequential task execution framework
 - [ ] **Phase 4: npm/yarn Cache Cleanup** - Implement npm and yarn (Classic + Berry) cache cleanup
 - [ ] **Phase 5: pnpm/bun/deno Cache Cleanup** - Implement remaining package manager cache cleanup
@@ -52,8 +52,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md - Install package-manager-detector and create detection module
-- [ ] 02-02-PLAN.md - Update lockfile.ts and verify detection integration
+- [x] 02-01-PLAN.md - Install package-manager-detector and create detection module
+- [x] 02-02-PLAN.md - Update lockfile.ts and verify detection integration
 
 ### Phase 3: Execution Infrastructure
 **Goal**: Cleanup tasks execute efficiently with configurable parallelism
@@ -170,7 +170,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. CLI Foundation | 3/3 | Complete | 2026-02-01 |
-| 2. Detection | 0/2 | Not started | - |
+| 2. Detection | 2/2 | Complete | 2026-02-01 |
 | 3. Execution Infrastructure | 0/TBD | Not started | - |
 | 4. npm/yarn Cache Cleanup | 0/TBD | Not started | - |
 | 5. pnpm/bun/deno Cache Cleanup | 0/TBD | Not started | - |
