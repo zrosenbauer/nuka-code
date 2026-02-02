@@ -58,6 +58,7 @@
 		"@clack/prompts": "^1.0.0",
 		"glob": "^11.0.2",
 		"ignore": "^7.0.5",
+		"p-limit": "^7.2.0",
 		"package-manager-detector": "^1.6.0",
 		"picocolors": "^1.1.1",
 		"remeda": "^2.22.5",
