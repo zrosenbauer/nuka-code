@@ -110,9 +110,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DET-02 | Phase 2 | Complete |
 | DET-03 | Phase 2 | Complete |
 | DET-04 | Phase 2 | Complete |
-| EXEC-01 | Phase 3 | Pending |
-| EXEC-02 | Phase 3 | Pending |
-| EXEC-03 | Phase 3 | Pending |
+| EXEC-01 | Phase 3 | Complete |
+| EXEC-02 | Phase 3 | Complete |
+| EXEC-03 | Phase 3 | Complete |
 | CACHE-01 | Phase 4 | Pending |
 | CACHE-02 | Phase 4 | Pending |
 | CACHE-03 | Phase 4 | Pending |
