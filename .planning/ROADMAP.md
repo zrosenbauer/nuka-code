@@ -64,11 +64,11 @@ Plans:
   2. Dependent tasks (e.g., cache clean commands) execute sequentially
   3. User can set execution mode via CLI flag (--parallel, --sequential, default: auto)
   4. Parallel execution shows concurrent spinner progress
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md - Install p-limit and create executor types, signals, progress modules
+- [ ] 03-02-PLAN.md - Create core executor with parallel/sequential execution
 
 ### Phase 4: npm/yarn Cache Cleanup
 **Goal**: Users can clean npm and yarn caches completely
@@ -171,7 +171,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9
 |-------|----------------|--------|-----------|
 | 1. CLI Foundation | 3/3 | Complete | 2026-02-01 |
 | 2. Detection | 2/2 | Complete | 2026-02-01 |
-| 3. Execution Infrastructure | 0/TBD | Not started | - |
+| 3. Execution Infrastructure | 0/2 | Planned | - |
 | 4. npm/yarn Cache Cleanup | 0/TBD | Not started | - |
 | 5. pnpm/bun/deno Cache Cleanup | 0/TBD | Not started | - |
 | 6. Workspace Support | 0/TBD | Not started | - |
