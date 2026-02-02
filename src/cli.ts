@@ -7,6 +7,9 @@ import { P, match } from "ts-pattern";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import ascii from "#/lib/ascii";
+import { createCacheCleanupTasks } from "#/lib/cache";
+import { detect } from "#/lib/detection";
+import { createSignalHandler, execute } from "#/lib/executor";
 import { isGitDirty } from "#/lib/git";
 import { initialize, isInitialized } from "#/lib/project";
 import { printTree } from "#/lib/tree";
@@ -81,6 +84,11 @@ cli
 						"DANGER: Bypassing safety checks is not recommended by Vault-Tec",
 					type: "boolean",
 					default: false,
+				})
+				.option("dry-run", {
+					type: "boolean",
+					description: "Show what would be cleaned without actually cleaning",
+					default: false,
 				});
 		},
 		async (argv) => {
@@ -132,6 +140,61 @@ cli
 			} catch (error) {
 				s.stop("Nuke failed!");
 				throw error;
+			}
+
+			// Cache cleanup phase - detect package manager and clean caches
+			const detection = await detect(process.cwd());
+			const cacheTasks = createCacheCleanupTasks(detection);
+
+			if (cacheTasks.length > 0) {
+				// Handle dry-run mode
+				if (argv.dryRun) {
+					clack.log.step("Dry run mode - showing what would be cleaned:");
+					for (const task of cacheTasks) {
+						const desc = task.describe();
+						clack.log.info(`Would run: ${desc.target}`);
+					}
+					clack.log.info(
+						`Would execute ${cacheTasks.length} cache cleanup command(s)`,
+					);
+					return;
+				}
+
+				// Execute cache cleanup with signal handling for Ctrl+C
+				const signalHandler = createSignalHandler();
+				try {
+					const summary = await execute(cacheTasks, {
+						mode: "sequential",
+						concurrency: 1,
+						dryRun: false,
+						signal: signalHandler.signal,
+					});
+
+					// Handle execution results
+					if (summary.cancelled) {
+						clack.log.warn("Cache cleanup cancelled");
+					} else {
+						// Check for failures
+						const failures = summary.results.filter((r) => !r.success);
+						if (failures.length > 0) {
+							const failureMessage = failures.map((f) => f.message).join(", ");
+							throw new Error(`Cache cleanup failed: ${failureMessage}`);
+						}
+
+						// Log success for each cleaned cache
+						for (let idx = 0; idx < cacheTasks.length; idx++) {
+							const task = cacheTasks[idx];
+							const result = summary.results[idx];
+							if (result?.success && !result.noop) {
+								clack.log.success(`${task.title} cleaned`);
+							}
+						}
+					}
+				} finally {
+					signalHandler.cleanup();
+				}
+			} else if (detection.primary === null) {
+				clack.log.info("No package manager detected for cache cleanup");
 			}
 		},
 	)
